@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "common.proto";
+
+option java_multiple_files = true;
+option java_package = "com.wongnai.erp.service";
+
+package customer;
+service CustomerService {
+	rpc find(Name) returns (CustomerResponse){
+	}
+
+	rpc add(GrpcCustomer) returns (erp.Response){
+	}
+
+}
+
+message Name {
+	string value = 1;
+}
+
+message GrpcCustomer {
+	int64 id = 1;
+	string primaryName = 2;
+	string thaiName = 3;
+	string englishName = 4;
+}
+
+message CustomerResponse{
+	erp.Response response = 1;
+	GrpcCustomer customer = 2;
+}
+
+message CustomerListResponse {
+	erp.Response response = 1;
+	repeated GrpcCustomer customers = 2;
+}
