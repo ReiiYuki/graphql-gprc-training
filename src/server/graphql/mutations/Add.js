@@ -7,7 +7,7 @@ import GrpcCustomerType from '../types/CustomerTypes/GrpcCustomerType'
 import CustomerService from '../../grpc/CustomerService'
 
 export default {
-  name: "add"
+  name: "add",
   type: ResponseType,
   args: {
     GrpcCustomer : {

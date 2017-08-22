@@ -1,7 +1,8 @@
 import {
   GraphQLObjectType,
   GraphQLString,
-  GraphQLInt
+  GraphQLInt,
+  GraphQLNonNull
 } from 'graphql'
 
 export default new GraphQLObjectType({
@@ -13,4 +14,5 @@ export default new GraphQLObjectType({
     desc: {
       type: new GraphQLNonNull(GraphQLString)
     }
+  }
 })
