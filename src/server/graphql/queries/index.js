@@ -1,5 +1,5 @@
 import Find from './Find'
 
 export default {
-  Find
+  find : Find
 }

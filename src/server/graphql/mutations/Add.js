@@ -10,15 +10,30 @@ export default {
   name: "add",
   type: ResponseType,
   args: {
-    GrpcCustomer : {
-      name : 'GrpcCustomer',
-      type : new GraphQLNonNull(GrpcCustomerType)
+    primaryName : {
+      name : 'primaryName',
+      type : new GraphQLNonNull(GraphQLString)
+    },
+    thaiName : {
+      name : 'thaiName',
+      type : new GraphQLNonNull(GraphQLString)
+    },
+    englishName : {
+      name : 'englishName',
+      type : new GraphQLNonNull(GraphQLString)
     }
   },
-  resolve (root, params, options) {
-    CustomerService.add(params.GrpcCustomer, (err, response)=>{
-      console.log(response)
-    })
-    return null
-  }
+  resolve : (root, params, options) => new Promise(
+		(resolve,reject) =>
+			CustomerService.add(
+				{
+					primaryName:params.primaryName,
+					thaiName:params.thaiName,
+					englishName:params.englishName
+				}, (err, response) => {
+					if (err) reject(err)
+					else resolve(response)
+	    })
+		).then((data)=>data)
+		.catch((err)=>err)
 }

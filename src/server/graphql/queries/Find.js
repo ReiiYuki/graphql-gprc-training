@@ -3,22 +3,26 @@ import {
   GraphQLNonNull
 } from 'graphql'
 import CustomerResponseType from '../types/CustomerTypes/CustomerResponseType'
-import NameType from '../types/CustomerTypes/NameType'
 import CustomerService from '../../grpc/CustomerService'
 
 export default {
-  name: "find"
+  name: "find",
   type: CustomerResponseType,
   args: {
-    Name : {
-      name : 'Name',
-      type : new GraphQLNonNull(NameType)
+    name : {
+      name : 'name',
+      type : new GraphQLNonNull(GraphQLString)
     }
   },
-  resolve (root, params, options) {
-    CustomerService.find(params.Name, (err, response)=>{
-      console.log(response)
+  resolve: (root, params, options) => new Promise(
+		(resolve,reject) =>
+			CustomerService.find(
+				{
+					value:params.name
+				}, (err, response)=>{
+      		if (err) reject(err)
+					else resolve(response)
     })
-    return null
-  }
+	).then((data) => data)
+	.catch((err) => err)
 }

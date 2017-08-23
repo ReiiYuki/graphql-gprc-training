@@ -1,5 +1,6 @@
 import {
-  GraphQLObjectType
+  GraphQLObjectType,
+  GraphQLNonNull
 } from 'graphql'
 import GrpcCustomerType from './GrpcCustomerType'
 import ResponseType from '../CommonTypes/ResponseType'

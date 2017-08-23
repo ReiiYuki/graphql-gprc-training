@@ -1,6 +1,7 @@
-import grpc from 'grpc'
+//import grpc from 'grpc'
+let grpc = require('grpc')
 
-const PROTO_PATH = './proto/customer.proto'
+const PROTO_PATH = __dirname + '/protos/customer.proto'
 
 const customerProto = grpc.load(PROTO_PATH).customer
 
